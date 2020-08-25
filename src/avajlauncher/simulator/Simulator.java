@@ -1,19 +1,21 @@
 package avajlauncher.simulator;
 
-import avajlauncher.test.*;
+import avajlauncher.interfaces.*;
+import avajlauncher.aircrafts.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Simulator{
 	public static void main(String[] args) throws FileNotFoundException{
-		System.out.println("hello world`");
 		
 		//Test test1 = new Test();
 			//test1.printHello(); //testing package call
 			
 	//////////lets read from a file
-	 if (args.length == 0){
-			System.out.print("no file available");
-			return;
+	try{
+		if (args.length == 0){
+			System.out.println("no file available");
+			System.exit(1);
         }else{
 			//System.out.println(args[0]);
 			String fileName = args[0];
@@ -28,36 +30,64 @@ public class Simulator{
 			String line;
 			
 			int numOfSimulations = 0;
-			
+						
 			try {
 					line = br.readLine();
 					numOfSimulations = Integer.parseInt(line.split(" ")[0]);//get number of simulations
+					
+					if(numOfSimulations < 0){
+						System.out.println("Invalid scenario file, no of simulations cannot be a negitive number");//check for negitives
+						System.exit(1);
+					}
 					System.out.println("no of simulations " + numOfSimulations);
 					
-			}catch (Exception e){
-					System.out.println(e);
-				}
-			
-			try{ 
-					while((line = br.readLine()) != null){
+			} catch (Exception e) {
+					System.out.println("Invalid scenario file");
+					System.exit(1);
+			}
 					
-					System.out.print(line.split(" ")[0]);
-					System.out.print(line.split(" ")[1]);
-					System.out.print(line.split(" ")[2]);
-					System.out.print(line.split(" ")[3]);
-					System.out.print(line.split(" ")[4]);
-					System.out.println('\n');
+			try{ 
+
+				WeatherTower tower = new WeatherTower();
+				ArrayList<Flyable> flyables = new ArrayList<>();
+
+
+					while((line = br.readLine()) != null){
+					line = line.trim();
+					line = line.replaceAll("\\s+", " ");
+					String[] values = line.split(" ");
+					if(values.length != 5){
+						System.out.println("Fields missing in scenario file");
+						System.exit(1);
+					}
+					
+				Flyable	flyable = AircraftFactory.newAircraft( //create new aircraft
+                        	values[0], values[1], Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])
+                        );
+						flyables.add(flyable); //add new aircraft to the list of aircrafts
+						//
+						//adding null 
+						//
+						for (Flyable aircraft : flyables) {
+							System.out.print(aircraft);
+						}
+
+					//System.out.print("Type: " + values[0]);
+					// System.out.print(" Name: " + values[1]);
+					// System.out.print(" Longitude: " + values[2]);
+					// System.out.print(" Latitude: " + values[3]);
+					// System.out.print(" Height: " + values[4]);
+					//System.out.println('\n');
 					
 				}
 			}catch (IOException e){
 				System.out.println(e);
-			}
-			
-			
-			
-			
+			}	
 		}
-	
+	}catch (Exception e){
+				System.out.println(e);
+			}
+	 
 	}
 	
 }
