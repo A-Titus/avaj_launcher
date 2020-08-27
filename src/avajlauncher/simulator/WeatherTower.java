@@ -4,12 +4,11 @@ import avajlauncher.aircrafts.*;
 
 public class WeatherTower extends Tower{
     public String getWeather(Coordinates coordinates){
-        String test;
-        return test = "test";
+        return WeatherProvider.getProvider().getCurrentWeather(coordinates);
     }
 
     void changeWeather(){
-
+        this.conditionsChanged();
     }
 
 }

@@ -65,29 +65,35 @@ public class Simulator{
                         	values[0], values[1], Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])
                         );
 						flyables.add(flyable); //add new aircraft to the list of aircrafts
-						//
-						//adding null 
-						//
+
 						for (Flyable aircraft : flyables) {
-							System.out.print(aircraft);
+							aircraft.registerTower(tower);
 						}
 
-					//System.out.print("Type: " + values[0]);
-					// System.out.print(" Name: " + values[1]);
-					// System.out.print(" Longitude: " + values[2]);
-					// System.out.print(" Latitude: " + values[3]);
-					// System.out.print(" Height: " + values[4]);
-					//System.out.println('\n');
-					
+						for (int i = 1; i <= numOfSimulations; i++) {
+							tower.changeWeather();
+						}
+							//System.out.println(flyable);
+							
+							//System.out.print("Type: " + values[0]);
+							// System.out.print(" Name: " + values[1]);
+							// System.out.print(" Longitude: " + values[2]);
+							// System.out.print(" Latitude: " + values[3]);
+							// System.out.print(" Height: " + values[4]);
+							//System.out.println('\n');
+							
+						}
+
+						System.out.println("Simulation ran " + numOfSimulations + " times");
+
+					}catch (IOException e){
+						System.out.println(e);
+					}	
 				}
-			}catch (IOException e){
-				System.out.println(e);
-			}	
-		}
-	}catch (Exception e){
+			}catch (Exception e){
 				System.out.println(e);
 			}
-	 
+			
+		}
+		
 	}
-	
-}
