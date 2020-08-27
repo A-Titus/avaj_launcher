@@ -18,18 +18,21 @@ public class Baloon extends Aircraft implements Flyable{
         int lat = this.coordinates.getLatitude();
         int height = this.coordinates.getHeight();
 
+        // System.out.println(lon);
+        // System.out.println(lat);
+        // System.out.println(height);
         if (weather == "SUN"){
             this.coordinates = new Coordinates(lon + 2, lat, height + 4);
-            System.out.println("Baloon " + this.name + " 1" + " its sunny out here");
+            System.out.println("Baloon " + this.name + " "+this.id + " its sunny out here");
         }else if(weather == "RAIN"){
             this.coordinates = new Coordinates(lon, lat, height - 5);
-            System.out.println("Baloon " + this.name + " 1" + " its Rainy out here");
+            System.out.println("Baloon " + this.name + " "+ this.id + " its Rainy out here");
         }else if(weather == "FOG"){
             this.coordinates = new Coordinates(lon, lat, height - 3);
-            System.out.println("Baloon " + this.name + " 1" + " its Misty out here");
+            System.out.println("Baloon " + this.name + " "+ this.id + " its Misty out here");
         }else if(weather == "SNOW"){
             this.coordinates = new Coordinates(lon, lat, height - 15);
-            System.out.println("Baloon " + this.name + " 1" + " its Freezing out here");
+            System.out.println("Baloon " + this.name + " "+ this.id + " its Freezing out here");
         }else{
             System.out.println("no wether");
         }
@@ -40,6 +43,6 @@ public class Baloon extends Aircraft implements Flyable{
         weatherTower.register(this);
 		 // Register the weather tower to this flyable
          this.weatherTower = weatherTower;
-         System.out.println("Tower says: Baloon " + this.id + " registerd to weather tower" );
+         System.out.println("Tower says: Baloon#"+ this.name + "(" + this.id +")" + " registerd to weather tower" );
 	}
 }

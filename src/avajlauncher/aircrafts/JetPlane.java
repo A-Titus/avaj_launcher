@@ -20,17 +20,17 @@ public class JetPlane extends Aircraft implements Flyable {
         int height = this.coordinates.getHeight();
 
         if (weather == "SUN") {
-            this.coordinates = new Coordinates(lon + 2, lat, height + 4);
-            System.out.println("JetPlane " + this.name + " 1" + " its sunny out here");
+            this.coordinates = new Coordinates(lon, lat + 10, height + 2);
+            System.out.println("JetPlane " + this.name + " "+this.id + " its sunny out here");
         } else if (weather == "RAIN") {
-            this.coordinates = new Coordinates(lon, lat, height - 5);
-            System.out.println("JetPlane " + this.name + " 1" + " its Rainy out here");
+            this.coordinates = new Coordinates(lon, lat + 5, height);
+            System.out.println("JetPlane " + this.name + " "+this.id + " its Rainy out here");
         } else if (weather == "FOG") {
-            this.coordinates = new Coordinates(lon, lat, height - 3);
-            System.out.println("JetPlane " + this.name + " 1" + " its Misty out here");
+            this.coordinates = new Coordinates(lon, lat + 1, height);
+            System.out.println("JetPlane " + this.name + " "+this.id + " its Misty out here");
         } else if (weather == "SNOW") {
-            this.coordinates = new Coordinates(lon, lat, height - 15);
-            System.out.println("JetPlane " + this.name + " 1" + " its Freezing out here");
+            this.coordinates = new Coordinates(lon, lat, height - 7);
+            System.out.println("JetPlane " + this.name + " "+this.id + " its Freezing out here");
         } else {
             System.out.println("no wether");
         }
@@ -41,7 +41,7 @@ public class JetPlane extends Aircraft implements Flyable {
         weatherTower.register(this);
         // Register the weather tower to this flyable
         this.weatherTower = weatherTower;
-        System.out.println("Tower says: JetPlane " + this.id + " registerd to weather tower");
+        System.out.println("Tower says: JetPlane#"+ this.name + "(" + this.id +")" + " registered to weather tower");
     }
 
 }
