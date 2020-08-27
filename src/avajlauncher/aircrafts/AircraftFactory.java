@@ -11,13 +11,13 @@ public abstract class AircraftFactory {
         Coordinates coordinates = new Coordinates(longitude, latitude, height);
 
         if (type.equals("Helicopter")){
-            System.out.println("------type is helicopter--------");
+            //System.out.println("------type is helicopter--------");
             flyable = new Helicopter(name, coordinates);
         }else if (type.equals("JetPlane")){
-            System.out.println("------type is jetplane--------");
+           /// System.out.println("------type is jetplane--------");
             flyable = new JetPlane(name, coordinates);
         }else if (type.equals("Baloon")){
-            System.out.println("------type is baloon--------");
+            //System.out.println("------type is baloon--------");
             flyable = new Baloon(name, coordinates);
         }else{
             System.out.println("aircraft not recognised " + type);

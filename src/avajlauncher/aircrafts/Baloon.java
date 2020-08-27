@@ -13,8 +13,7 @@ public class Baloon extends Aircraft implements Flyable{
 	}
 	
 	public void updateConditions(){
-        String weather = this.weatherTower.getWeather(this.coordinates);
-        
+        String weather = weatherTower.getWeather(this.coordinates);
         int lon = this.coordinates.getLongitude();
         int lat = this.coordinates.getLatitude();
         int height = this.coordinates.getHeight();
@@ -37,10 +36,10 @@ public class Baloon extends Aircraft implements Flyable{
 	}
 	
 	public void registerTower(WeatherTower weatherTower){
+        // Register (Add) this flyable to the weathertower list
+        weatherTower.register(this);
 		 // Register the weather tower to this flyable
          this.weatherTower = weatherTower;
-         // Register (Add) this flyable to the weathertower list
-         this.weatherTower.register(this);
          System.out.println("Tower says: Baloon " + this.id + " registerd to weather tower" );
 	}
 }

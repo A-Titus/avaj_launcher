@@ -23,9 +23,11 @@ public abstract class Tower {
     }
 
     protected void conditionsChanged(){
+        //System.out.println("in tower conditions change method");
         try {
             for (Flyable flyable : observers) {
                 flyable.updateConditions();
+                //System.out.println("after tower conditions change method");
             }
         } catch (Exception e) {
             System.out.println(e);

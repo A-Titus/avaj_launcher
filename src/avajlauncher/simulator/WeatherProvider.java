@@ -3,7 +3,7 @@ package avajlauncher.simulator;
 import avajlauncher.aircrafts.*;
 
 public class WeatherProvider {
-    private static WeatherProvider weatherProvider;
+    private static WeatherProvider weatherProvider = new WeatherProvider();
     private String weather[] = {"RAIN", "FOG", "SUN", "SNOW"};
 
     private WeatherProvider(){
