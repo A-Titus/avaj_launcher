@@ -15,9 +15,12 @@ public class Simulator {
 		try {
             File simulation = new File("simulation.txt");
             if (simulation.createNewFile()) {
-              System.out.println("File created");
+              //System.out.println("File created");
             } else {
-              System.out.println("File already exists.");
+				FileWriter fw = new FileWriter("simulation.txt");
+            	PrintWriter pw = new PrintWriter(fw);
+				pw.print("");										//empty file if exists
+				pw.close();
             }
           } catch (Exception e) {
             System.out.println("Could not create file.");
@@ -46,11 +49,11 @@ public class Simulator {
 					line = br.readLine();
 					numOfSimulations = Integer.parseInt(line.split(" ")[0]);// get number of simulations
 
-					if (numOfSimulations < 0) {
+					if (numOfSimulations < 0) { //check for negitives
 						System.out.println("Invalid scenario file, no of simulations cannot be a negitive number");// check for negitives
 						System.exit(1);
 					}
-					System.out.println("no of simulations " + numOfSimulations);
+					//System.out.println("no of simulations " + numOfSimulations);
 
 				} catch (Exception e) {
 					System.out.println("Invalid scenario file");
