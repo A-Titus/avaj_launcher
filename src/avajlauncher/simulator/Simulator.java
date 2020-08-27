@@ -4,12 +4,24 @@ import avajlauncher.interfaces.*;
 import avajlauncher.aircrafts.*;
 import java.io.*;
 import java.util.ArrayList;
+import avajlauncher.messager.*;
 
 public class Simulator {
 	public static void main(String[] args) throws FileNotFoundException {
 
 		// Test test1 = new Test();
 		// test1.printHello(); //testing package call
+
+		try {
+            File simulation = new File("simulation.txt");
+            if (simulation.createNewFile()) {
+              System.out.println("File created");
+            } else {
+              System.out.println("File already exists.");
+            }
+          } catch (Exception e) {
+            System.out.println("Could not create file.");
+          }
 
 		////////// lets read from a file
 		try {
@@ -18,7 +30,7 @@ public class Simulator {
 				System.exit(1);
 			} else {
 				// System.out.println(args[0]);
-				String fileName = args[0];
+				//String fileName = args[0];
 
 				// System.out.println("File name :"+file.getName());
 				// System.out.println("Path: "+file.getPath());
@@ -35,9 +47,7 @@ public class Simulator {
 					numOfSimulations = Integer.parseInt(line.split(" ")[0]);// get number of simulations
 
 					if (numOfSimulations < 0) {
-						System.out.println("Invalid scenario file, no of simulations cannot be a negitive number");// check
-																													// for
-																													// negitives
+						System.out.println("Invalid scenario file, no of simulations cannot be a negitive number");// check for negitives
 						System.exit(1);
 					}
 					System.out.println("no of simulations " + numOfSimulations);
@@ -82,17 +92,20 @@ public class Simulator {
 
 					for (int i = 1; i <= numOfSimulations; i++) {
 						tower.changeWeather();
-						System.out.println("inside weather change");
+						//System.out.println("inside weather change");
 					}
 
 					System.out.println("Simulation ran " + numOfSimulations + " times");
 
-				} catch (IOException e) {
-					System.out.println(e);
+				} catch (Exception e) {
+					System.out.println("error occured");
+					System.exit(1);
 				}
+				br.close();
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("couldnt read from file");
+			System.exit(1);
 		}
 
 	}

@@ -3,6 +3,7 @@ package avajlauncher.aircrafts;
 import avajlauncher.interfaces.Flyable;
 import avajlauncher.aircrafts.Aircraft;
 import avajlauncher.simulator.*;
+import avajlauncher.messager.*;
 
 public class Helicopter extends Aircraft implements Flyable{
 	
@@ -19,28 +20,44 @@ public class Helicopter extends Aircraft implements Flyable{
         int lat = this.coordinates.getLatitude();
         int height = this.coordinates.getHeight();
 
+        Messager messageLogger = new Messager();
+
+        if(height > 100){//max height check before
+            height = 100;
+        }
+
         if (weather == "SUN"){
             this.coordinates = new Coordinates(lon + 10, lat, height + 2);
-            System.out.println("HElicopter " + this.name + " "+this.id + " its sunny out here");
+            messageLogger.messager("Helicopter#"+ this.name + "(" + this.id +")" + " its Sunny out here, wheres my sunglasses");
         }else if(weather == "RAIN"){
             this.coordinates = new Coordinates(lon + 5, lat, height);
-            System.out.println("Helicopter " + this.name + " "+this.id + " its Rainy out here");
+            messageLogger.messager("Helicopter#"+ this.name + "(" + this.id +")" + " its Rainy out here, weve got to land soon");
         }else if(weather == "FOG"){
             this.coordinates = new Coordinates(lon + 1, lat, height);
-            System.out.println("Helicopter " + this.name + " "+this.id + " its Misty out here");
+            messageLogger.messager("Helicopter#"+ this.name + "(" + this.id +")" + " its Misty out here, hold on tight i cant see!");
         }else if(weather == "SNOW"){
             this.coordinates = new Coordinates(lon, lat, height - 12);
-            System.out.println("Helicopter " + this.name + " "+this.id + " its Freezing out here");
+            messageLogger.messager("Helicopter#"+ this.name + "(" + this.id +")" + " its Freezing out here, where are my feet i cant feel them");
         }else{
-            System.out.println("no wether");
+            System.out.println("no weather");
+        }
+
+        if(height > 100){//max height check after
+            height = 100;
+        }
+
+        if(height <= 0){
+            messageLogger.messager("Tower says: Helicopter#"+ this.name + "(" + this.id +")" + " has landed at " + lat + " " + lon + " " + height );
+            messageLogger.messager("Tower says: Helicopter#"+ this.name + "(" + this.id +")" + " unregistered from weather tower" );
+            this.weatherTower.unregister(this);
         }
 	}
 	
 	public void registerTower(WeatherTower weatherTower){
-		 // Register the weather tower to this flyable
+        Messager messageLogger = new Messager();
+
          this.weatherTower = weatherTower;
-         // Register (Add) this flyable to the weathertower list
          this.weatherTower.register(this);
-         System.out.println("Tower says: Helicopter#"+ this.name + "(" + this.id +")" + " registered to weather tower" );
+         messageLogger.messager("Tower says: Helicopter#"+ this.name + "(" + this.id +")" + " registered to weather tower" );
 	}
 }

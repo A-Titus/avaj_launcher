@@ -1,36 +1,46 @@
 package avajlauncher.simulator;
 
-import java.util.ArrayList;
+import java.util.*;
 import avajlauncher.interfaces.Flyable;
 
 public abstract class Tower {
-    private ArrayList<Flyable> observers = new ArrayList<Flyable>();
+    private List<Flyable> observers = new ArrayList<Flyable>();
 
     public void register(Flyable flyable){
         try {
             this.observers.add(flyable);     
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("failed to register flyable");
         }
     }
 
     public void unregister(Flyable flyable){
         try {
-            this.observers.remove(flyable);     
+       this.observers.remove(flyable);    
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("failed to unregister");
         }
+  
     }
 
     protected void conditionsChanged(){
-        //System.out.println("in tower conditions change method");
         try {
-            for (Flyable flyable : observers) {
-                flyable.updateConditions();
-                //System.out.println("after tower conditions change method");
-            }
+            for(int i = 0; i < observers.size(); i++)
+            {
+                observers.get(i).updateConditions();
+            } 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("failed to update conditions");        }
         }
-            }
+        //System.out.println("in tower conditions change method");
+        // try {
+            // for (Flyable flyable : observers) {
+            //     flyable.updateConditions();
+            //    // System.out.println("after tower conditions change method");
+            // }
+        // } catch (Exception e) {
+        //     System.out.println(e);
+        // }
+        //     }
+
 }
