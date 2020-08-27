@@ -82,7 +82,7 @@ public class Simulator {
 
 					for (int i = 1; i <= numOfSimulations; i++) {
 						tower.changeWeather();
-						//System.out.println("inside weather change");
+						System.out.println("inside weather change");
 					}
 
 					System.out.println("Simulation ran " + numOfSimulations + " times");

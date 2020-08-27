@@ -21,6 +21,8 @@ public class Baloon extends Aircraft implements Flyable{
         // System.out.println(lon);
         // System.out.println(lat);
         // System.out.println(height);
+        
+
         if (weather == "SUN"){
             this.coordinates = new Coordinates(lon + 2, lat, height + 4);
             System.out.println("Baloon " + this.name + " "+this.id + " its sunny out here");
