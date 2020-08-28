@@ -8,7 +8,7 @@ public class WeatherProvider {
     private String weather[] = {"RAIN", "FOG", "SUN", "SNOW"};
 
     private WeatherProvider(){
-
+        //weather provider constructor
     }
 
     public static WeatherProvider getProvider(){

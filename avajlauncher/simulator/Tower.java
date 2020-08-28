@@ -36,7 +36,7 @@ public abstract class Tower {
         // try {
             // for (Flyable flyable : observers) {
             //     flyable.updateConditions();
-            //    // System.out.println("after tower conditions change method");
+            //    // System.out.println("after tower conditions change method"); concurrent modificationerror
             // }
         // } catch (Exception e) {
         //     System.out.println(e);
